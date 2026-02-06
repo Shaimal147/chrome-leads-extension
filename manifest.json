@@ -7,11 +7,7 @@
   "action": {
     "default_popup": "./index.html",
     "default_title": "Leads tracker",
-    "default_icon": "https://img.icons8.com/?size=100&id=RxpP4tTaUhYX&format=png&color=000000"
-  },
-
-  "background": {
-    "service_worker": "background.js"
+    "default_icon": "./icons8-dollar-96.png"
   },
 
   "permissions": [
