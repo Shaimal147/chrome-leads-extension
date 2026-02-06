@@ -10,7 +10,7 @@ inputBtn.addEventListener("click", () => {
     const savedLead = addLeads(inputEl.value)
     resetInput()
     if (!savedLead) return
-    renderLeadsList(savedLead, leadsListEl)
+    renderLeadsList(myLeads, leadsListEl)
 })
 
 function addLeads(lead) {
@@ -25,7 +25,7 @@ function resetInput() {
     inputEl.value = ""
 }
 
-function renderLeadsList(lead, UIList) {
+/*function renderLeadsList(lead, UIList) {
     const li = document.createElement("li")
     const a = document.createElement("a")
     a.href = lead
@@ -33,4 +33,21 @@ function renderLeadsList(lead, UIList) {
     a.target = "_blank"
     li.appendChild(a)
     UIList.appendChild(li)
+}*/
+
+function renderLeadsList(leads, UIList) {
+    UIList.innerHTML = ""
+    const frag = document.createDocumentFragment()
+
+    for (let lead of leads) {
+        const li = document.createElement("li")
+        const a = document.createElement("a")
+        a.href = lead
+        a.textContent = lead
+        a.target = "_blank"
+        li.appendChild(a)
+        frag.appendChild(li)
+    }
+
+    UIList.appendChild(frag)
 }
