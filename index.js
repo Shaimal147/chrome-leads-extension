@@ -2,23 +2,35 @@ let myLeads = []
 
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
+const leadsListEl = document.getElementById("leads-list-el")
 
 resetInput()
 
 inputBtn.addEventListener("click", () => {
-    addLeads(inputEl.value)
+    const savedLead = addLeads(inputEl.value)
     resetInput()
-    for (let lead of myLeads) {
-        console.log(lead)
-    }
+    if (!savedLead) return
+    renderLeadsList(savedLead, leadsListEl)
 })
 
 function addLeads(lead) {
     const value = lead.trim()
     if (!value) return
-    myLeads.push(lead)
+    myLeads.push(value)
+    
+    return value
 }
 
 function resetInput() {
     inputEl.value = ""
+}
+
+function renderLeadsList(lead, UIList) {
+    const li = document.createElement("li")
+    const a = document.createElement("a")
+    a.href = lead
+    a.textContent = lead
+    a.target = "_blank"
+    li.appendChild(a)
+    UIList.appendChild(li)
 }
