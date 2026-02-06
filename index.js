@@ -1,15 +1,17 @@
-let myLeads = []
+let myLeads = JSON.parse(localStorage.getItem("myLeads")) || []
 
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
 const leadsListEl = document.getElementById("leads-list-el")
 
 resetInput()
+renderLeadsList(myLeads, leadsListEl)
 
 inputBtn.addEventListener("click", () => {
     const savedLead = addLeads(inputEl.value)
     resetInput()
     if (!savedLead) return
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
     renderLeadsList(myLeads, leadsListEl)
 })
 
