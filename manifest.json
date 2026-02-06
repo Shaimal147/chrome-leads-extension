@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Leads tracker",
+  "version": "1.0",
+  "description": "A simple extension to save leads url",
+
+  "action": {
+    "default_popup": "./index.html",
+    "default_title": "Leads tracker",
+    "default_icon": "https://img.icons8.com/?size=100&id=RxpP4tTaUhYX&format=png&color=000000"
+  },
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ]
+}
