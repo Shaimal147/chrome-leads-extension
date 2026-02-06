@@ -2,6 +2,7 @@ let myLeads = retrieveLocalStorageItems("myLeads") || []
 
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
+const deleteBtn = document.getElementById("delete-btn")
 const leadsListEl = document.getElementById("leads-list-el")
 
 resetInput()
@@ -14,6 +15,15 @@ inputBtn.addEventListener("click", () => {
     saveItemToLocalStorage("myLeads", myLeads)
     renderLeadsList(myLeads, leadsListEl)
 })
+
+deleteBtn.addEventListener("click", () => {
+    deleteLeads(leadsListEl)
+})
+
+function deleteLeads(UIList) {
+    localStorage.clear()
+    UIList.innerHTML = ""
+}
 
 function addLeads(lead) {
     const value = lead.trim()
