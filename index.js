@@ -1,4 +1,4 @@
-let myLeads = JSON.parse(localStorage.getItem("myLeads")) || []
+let myLeads = retrieveLocalStorageItems("myLeads") || []
 
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
@@ -11,7 +11,7 @@ inputBtn.addEventListener("click", () => {
     const savedLead = addLeads(inputEl.value)
     resetInput()
     if (!savedLead) return
-    localStorage.setItem("myLeads", JSON.stringify(myLeads))
+    saveItemToLocalStorage("myLeads", myLeads)
     renderLeadsList(myLeads, leadsListEl)
 })
 
@@ -52,4 +52,12 @@ function renderLeadsList(leads, UIList) {
     }
 
     UIList.appendChild(frag)
+}
+
+function retrieveLocalStorageItems(key) {
+     return JSON.parse(localStorage.getItem(`${key}`))
+}
+
+function saveItemToLocalStorage(key, value) {
+    localStorage.setItem(`${key}`, JSON.stringify(value))
 }
