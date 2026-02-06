@@ -1,4 +1,4 @@
-let myLeads = retrieveLocalStorageItems("myLeads") || []
+let myLeads = retrieveLocalStorageItems("myLeads")
 
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
@@ -17,12 +17,13 @@ inputBtn.addEventListener("click", () => {
 })
 
 deleteBtn.addEventListener("click", () => {
-    deleteLeads(leadsListEl)
+    deleteLeads("myLeads", leadsListEl)
 })
 
-function deleteLeads(UIList) {
-    localStorage.clear()
-    UIList.innerHTML = ""
+function deleteLeads(key, UIList) {
+    localStorage.removeItem(key)
+    myLeads = []
+    renderLeadsList(myLeads, leadsListEl)
 }
 
 function addLeads(lead) {
@@ -65,7 +66,7 @@ function renderLeadsList(leads, UIList) {
 }
 
 function retrieveLocalStorageItems(key) {
-     return JSON.parse(localStorage.getItem(`${key}`))
+     return JSON.parse(localStorage.getItem(`${key}`)) || []
 }
 
 function saveItemToLocalStorage(key, value) {
